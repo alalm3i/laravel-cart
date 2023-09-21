@@ -1,6 +1,6 @@
 <?php
 
-namespace Gloudemans\Shoppingcart\Facades;
+namespace Alalm3i\LaravelCart\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

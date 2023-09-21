@@ -1,6 +1,6 @@
 <?php
 
-namespace Gloudemans\Shoppingcart;
+namespace Alalm3i\LaravelCart;
 
 use Illuminate\Support\Collection;
 

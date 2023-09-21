@@ -1,14 +1,14 @@
 <?php
 
-namespace Gloudemans\Shoppingcart;
+namespace Alalm3i\LaravelCart;
 
 use Carbon\Carbon;
 use Closure;
-use Gloudemans\Shoppingcart\Contracts\Buyable;
-use Gloudemans\Shoppingcart\Contracts\InstanceIdentifier;
-use Gloudemans\Shoppingcart\Exceptions\CartAlreadyStoredException;
-use Gloudemans\Shoppingcart\Exceptions\InvalidRowIDException;
-use Gloudemans\Shoppingcart\Exceptions\UnknownModelException;
+use Alalm3i\LaravelCart\Contracts\Buyable;
+use Alalm3i\LaravelCart\Contracts\InstanceIdentifier;
+use Alalm3i\LaravelCart\Exceptions\CartAlreadyStoredException;
+use Alalm3i\LaravelCart\Exceptions\InvalidRowIDException;
+use Alalm3i\LaravelCart\Exceptions\UnknownModelException;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Session\SessionManager;
@@ -90,7 +90,7 @@ class Cart
      *
      * @param string|null $instance
      *
-     * @return \Gloudemans\Shoppingcart\Cart
+     * @return \Alalm3i\LaravelCart\Cart
      */
     public function instance($instance = null)
     {
@@ -126,7 +126,7 @@ class Cart
      * @param float     $weight
      * @param array     $options
      *
-     * @return \Gloudemans\Shoppingcart\CartItem
+     * @return \Alalm3i\LaravelCart\CartItem
      */
     public function add($id, $name = null, $qty = null, $price = null, $weight = 0, array $options = [])
     {
@@ -144,12 +144,12 @@ class Cart
     /**
      * Add an item to the cart.
      *
-     * @param \Gloudemans\Shoppingcart\CartItem $item          Item to add to the Cart
+     * @param \Alalm3i\LaravelCart\CartItem $item          Item to add to the Cart
      * @param bool                              $keepDiscount  Keep the discount rate of the Item
      * @param bool                              $keepTax       Keep the Tax rate of the Item
      * @param bool                              $dispatchEvent
      *
-     * @return \Gloudemans\Shoppingcart\CartItem The CartItem
+     * @return \Alalm3i\LaravelCart\CartItem The CartItem
      */
     public function addCartItem($item, $keepDiscount = false, $keepTax = false, $dispatchEvent = true)
     {
@@ -188,7 +188,7 @@ class Cart
      * @param string $rowId
      * @param mixed  $qty
      *
-     * @return \Gloudemans\Shoppingcart\CartItem
+     * @return \Alalm3i\LaravelCart\CartItem
      */
     public function update($rowId, $qty)
     {
@@ -265,7 +265,7 @@ class Cart
      *
      * @param string $rowId
      *
-     * @return \Gloudemans\Shoppingcart\CartItem
+     * @return \Alalm3i\LaravelCart\CartItem
      */
     public function get($rowId)
     {
@@ -811,7 +811,7 @@ class Cart
      * @param float     $weight
      * @param array     $options
      *
-     * @return \Gloudemans\Shoppingcart\CartItem
+     * @return \Alalm3i\LaravelCart\CartItem
      */
     private function createCartItem($id, $name, $qty, $price, $weight, array $options)
     {

@@ -1,13 +1,13 @@
 <?php
 
-namespace Gloudemans\Tests\Shoppingcart\Fixtures;
+namespace Alalm3i\LaravelCart\Tests\Fixtures;
 
-use Gloudemans\Shoppingcart\Contracts\Buyable;
+use Alalm3i\LaravelCart\Contracts\Buyable;
 use Illuminate\Database\Eloquent\Model;
 
 class BuyableProductTrait extends Model implements Buyable
 {
-    use \Gloudemans\Shoppingcart\CanBeBought;
+    use \Alalm3i\LaravelCart\CanBeBought;
 
     /**
      * The attributes that are mass assignable.

@@ -1,8 +1,8 @@
 <?php
 
-namespace Gloudemans\Tests\Shoppingcart\Fixtures;
+namespace Alalm3i\LaravelCart\Tests\Fixtures;
 
-use Gloudemans\Shoppingcart\Contracts\InstanceIdentifier;
+use Alalm3i\LaravelCart\Contracts\InstanceIdentifier;
 
 class Identifiable implements InstanceIdentifier
 {

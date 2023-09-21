@@ -1,8 +1,8 @@
 <?php
 
-namespace Gloudemans\Tests\Shoppingcart\Fixtures;
+namespace Alalm3i\LaravelCart\Tests\Fixtures;
 
-use Gloudemans\Shoppingcart\Contracts\Buyable;
+use Alalm3i\LaravelCart\Contracts\Buyable;
 use Illuminate\Database\Eloquent\Model;
 
 class BuyableProduct extends Model implements Buyable

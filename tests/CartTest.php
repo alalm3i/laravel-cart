@@ -1,16 +1,16 @@
 <?php
 
-namespace Gloudemans\Tests\Shoppingcart;
+namespace Alalm3i\LaravelCart\Tests;
 
 use Carbon\Carbon;
-use Gloudemans\Shoppingcart\Calculation\GrossPrice;
-use Gloudemans\Shoppingcart\Cart;
-use Gloudemans\Shoppingcart\CartItem;
-use Gloudemans\Shoppingcart\ShoppingcartServiceProvider;
-use Gloudemans\Tests\Shoppingcart\Fixtures\BuyableProduct;
-use Gloudemans\Tests\Shoppingcart\Fixtures\BuyableProductTrait;
-use Gloudemans\Tests\Shoppingcart\Fixtures\Identifiable;
-use Gloudemans\Tests\Shoppingcart\Fixtures\ProductModel;
+use Alalm3i\LaravelCart\Calculation\GrossPrice;
+use Alalm3i\LaravelCart\Cart;
+use Alalm3i\LaravelCart\CartItem;
+use Alalm3i\LaravelCart\CartServiceProvider;
+use Alalm3i\LaravelCart\Tests\Fixtures\BuyableProduct;
+use Alalm3i\LaravelCart\Tests\Fixtures\BuyableProductTrait;
+use Alalm3i\LaravelCart\Tests\Fixtures\Identifiable;
+use Alalm3i\LaravelCart\Tests\Fixtures\ProductModel;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Session\SessionManager;
 use Illuminate\Support\Collection;
@@ -31,7 +31,7 @@ class CartTest extends TestCase
      */
     protected function getPackageProviders($app)
     {
-        return [ShoppingcartServiceProvider::class];
+        return [CartServiceProvider::class];
     }
 
     /**
@@ -385,7 +385,7 @@ class CartTest extends TestCase
      */
     public function it_will_throw_an_exception_if_a_rowid_was_not_found()
     {
-        $this->expectException(\Gloudemans\Shoppingcart\Exceptions\InvalidRowIDException::class);
+        $this->expectException(\Alalm3i\LaravelCart\Exceptions\InvalidRowIDException::class);
 
         $cart = $this->getCart();
 
@@ -722,7 +722,7 @@ class CartTest extends TestCase
      */
     public function it_will_throw_an_exception_when_a_non_existing_model_is_being_associated()
     {
-        $this->expectException(\Gloudemans\Shoppingcart\Exceptions\UnknownModelException::class);
+        $this->expectException(\Alalm3i\LaravelCart\Exceptions\UnknownModelException::class);
         $this->expectExceptionMessage('The supplied model SomeModel does not exist.');
 
         $cart = $this->getCart();
@@ -1026,7 +1026,7 @@ class CartTest extends TestCase
      */
     public function it_will_throw_an_exception_when_a_cart_was_already_stored_using_the_specified_identifier()
     {
-        $this->expectException(\Gloudemans\Shoppingcart\Exceptions\CartAlreadyStoredException::class);
+        $this->expectException(\Alalm3i\LaravelCart\Exceptions\CartAlreadyStoredException::class);
         $this->expectExceptionMessage('A cart with identifier 123 was already stored.');
 
         $this->artisan('migrate', [
@@ -1599,7 +1599,7 @@ class CartTest extends TestCase
     /**
      * Get an instance of the cart.
      *
-     * @return \Gloudemans\Shoppingcart\Cart
+     * @return \Alalm3i\LaravelCart\Cart
      */
     private function getCart()
     {
@@ -1614,7 +1614,7 @@ class CartTest extends TestCase
      *
      * @param int $discount
      *
-     * @return \Gloudemans\Shoppingcart\Cart
+     * @return \Alalm3i\LaravelCart\Cart
      */
     private function getCartDiscount($discount = 50)
     {

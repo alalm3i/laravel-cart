@@ -1,8 +1,10 @@
 # Attention
-Due to the difficulty experienced by certain individuals and companies in comprehending the [copyleft provision of the MIT license](https://github.com/bumbummen99/LaravelShoppingcart/blob/1c50fb564826b6ee748d2d9afad7447b6884166e/LICENSE#L12), as evidenced by the unauthorized relicensing of my work and that of others, I have opted to terminate all further development and assistance for this repository. Given that this package is intended for use in e-commerce projects, it is expected that the necessary resources would be available for the development and support of your own solutions.
 
+This package is a fork from [bumbummen99/LaravelShoppingcart](https://github.com/bumbummen99/LaravelShoppingcart) with adding support for Laravel 10
 
-## LaravelShoppingcart
+I just upgraded the package to support Laravel 10 in order to use it in some projects.
+
+## Laravel Cart
 ![CI Code Checks](https://github.com/bumbummen99/LaravelShoppingcart/workflows/CI%20Code%20Checks/badge.svg?branch=master)
 [![codecov](https://codecov.io/gh/bumbummen99/LaravelShoppingcart/branch/master/graph/badge.svg)](https://codecov.io/gh/bumbummen99/LaravelShoppingcart)
 [![StyleCI](https://styleci.io/repos/152610878/shield?branch=master)](https://styleci.io/repos/152610878)
@@ -11,7 +13,6 @@ Due to the difficulty experienced by certain individuals and companies in compre
 [![Latest Unstable Version](https://poser.pugx.org/bumbummen99/shoppingcart/v/unstable)](https://packagist.org/packages/bumbummen99/shoppingcart)
 [![License](https://poser.pugx.org/bumbummen99/shoppingcart/license)](https://packagist.org/packages/bumbummen99/shoppingcart)
 
-This is a fork of [Crinsane's LaravelShoppingcart](https://github.com/Crinsane/LaravelShoppingcart) extended with minor features compatible with Laravel 8+. An example integration can be [found here](https://github.com/bumbummen99/LaravelShoppingcartDemo).
 
 ## Installation
 
@@ -19,21 +20,18 @@ Install the [package](https://packagist.org/packages/bumbummen99/shoppingcart) t
 
 Run the Composer require command from the Terminal:
 
-    composer require bumbummen99/shoppingcart
+    composer require alalm3i/laravel-cart
 
-Now you're ready to start using the shoppingcart in your application.
+Now you're ready to start using Laravel Cart package in your application.
 
-**As of version 2 of this package it's possibly to use dependency injection to inject an instance of the Cart class into your controller or other class**
 
 You definitely should publish the `config` file and take a look at it.
 
-    php artisan vendor:publish --provider="Gloudemans\Shoppingcart\ShoppingcartServiceProvider" --tag="config"
+    php artisan vendor:publish --provider="Alalm3i\LaravelCart\CartServiceProvider" --tag="config"
 
 This will give you a `cart.php` config file in which you can make changes to the packages behaivor.
 
-## Updates
 
-As of version **4.2.0** this package does, when being used with PostgreSQL, encode the cart content to base64 before storing into database due to an [issue with saving values including zero bytes](https://github.com/bumbummen99/LaravelShoppingcart/pull/167). Please consider clearing your cart table in case you are upgrading using PostgreSQL from a version **<4.2.0**.
 
 ## Table of Contents
 Look at one of the following topics to learn more about LaravelShoppingcart
@@ -388,11 +386,11 @@ For the convenience of faster adding items to cart and their automatic associati
 <?php
 namespace App\Models;
 
-use Gloudemans\Shoppingcart\Contracts\Buyable;
+use Alalm3i\LaravelCart\Contracts\Buyable;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model implements Buyable {
-    use Gloudemans\Shoppingcart\CanBeBought;
+    use Alalm3i\LaravelCart\CanBeBought;
 }
 ```
 
@@ -419,7 +417,7 @@ Example:
 <?php
 namespace App\Models;
 
-use Gloudemans\Shoppingcart\Contracts\Buyable;
+use Alalm3i\LaravelCart\Contracts\Buyable;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model implements Buyable {
@@ -488,7 +486,7 @@ You can also use the `InstanceIdentifier` Contract to extend a desired Model to 
 namespace App;
 ...
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Gloudemans\Shoppingcart\Contracts\InstanceIdentifier;
+use Alalm3i\LaravelCart\Contracts\InstanceIdentifier;
 
 class User extends Authenticatable implements InstanceIdentifier
 {
@@ -570,7 +568,7 @@ By default the package will use the default database connection and use a table 
 
 To make your life easy, the package also includes a ready to use `migration` which you can publish by running:
 
-    php artisan vendor:publish --provider="Gloudemans\Shoppingcart\ShoppingcartServiceProvider" --tag="migrations"
+    php artisan vendor:publish --provider="Alalm3i\LaravelCart\ShoppingcartServiceProvider" --tag="migrations"
     
 This will place a `shoppingcart` table's migration file into `database/migrations` directory. Now all you have to do is run `php artisan migrate` to migrate your database.
 
@@ -606,14 +604,14 @@ If you want to erase the cart from the database, all you have to do is call the 
 
 ## Calculators
 
-The calculation logic for the package is implemented and defined in `Calculator` classes. These implement the `Gloudemans\Shoppingcart\Contracts\Calculator` Contract and and determine how the prices are calculated and rounded. The calculators can be configured in the confugration file. This is the default calculator:
+The calculation logic for the package is implemented and defined in `Calculator` classes. These implement the `Alalm3i\LaravelCart\Contracts\Calculator` Contract and and determine how the prices are calculated and rounded. The calculators can be configured in the confugration file. This is the default calculator:
 ```php
 <?php
 
-namespace Gloudemans\Shoppingcart\Calculation;
+namespace Alalm3i\LaravelCart\Calculation;
 
-use Gloudemans\Shoppingcart\CartItem;
-use Gloudemans\Shoppingcart\Contracts\Calculator;
+use Alalm3i\LaravelCart\CartItem;
+use Alalm3i\LaravelCart\Contracts\Calculator;
 
 class DefaultCalculator implements Calculator
 {
@@ -733,325 +731,3 @@ Cart::add('1239ad0', 'Product 2', 2, 5.95, ['size' => 'large']);
    	</tfoot>
 </table>
 ```
-
-## Collaborators
-
-<!-- readme: collaborators -start -->
-<table>
-<tr>
-    <td align="center">
-        <a href="https://github.com/bumbummen99">
-            <img src="https://avatars.githubusercontent.com/u/4533331?v=4" width="100;" alt="bumbummen99"/>
-            <br />
-            <sub><b>Patrick</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/Sartoric">
-            <img src="https://avatars.githubusercontent.com/u/6607379?v=4" width="100;" alt="Sartoric"/>
-            <br />
-            <sub><b>Sartoric</b></sub>
-        </a>
-    </td></tr>
-</table>
-<!-- readme: collaborators -end -->
-
-## Contributors
-<!-- readme: contributors -start -->
-<table>
-<tr>
-    <td align="center">
-        <a href="https://github.com/bumbummen99">
-            <img src="https://avatars.githubusercontent.com/u/4533331?v=4" width="100;" alt="bumbummen99"/>
-            <br />
-            <sub><b>Patrick</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/Crinsane">
-            <img src="https://avatars.githubusercontent.com/u/1297781?v=4" width="100;" alt="Crinsane"/>
-            <br />
-            <sub><b>Rob Gloudemans</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/Norris1z">
-            <img src="https://avatars.githubusercontent.com/u/18237132?v=4" width="100;" alt="Norris1z"/>
-            <br />
-            <sub><b>Norris Oduro</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/olegbespalov">
-            <img src="https://avatars.githubusercontent.com/u/5425600?v=4" width="100;" alt="olegbespalov"/>
-            <br />
-            <sub><b>Oleg Bespalov</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/cwprogger">
-            <img src="https://avatars.githubusercontent.com/u/11742147?v=4" width="100;" alt="cwprogger"/>
-            <br />
-            <sub><b>Andrew Savchenko</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/ChrisThompsonTLDR">
-            <img src="https://avatars.githubusercontent.com/u/348801?v=4" width="100;" alt="ChrisThompsonTLDR"/>
-            <br />
-            <sub><b>Chris Thompson</b></sub>
-        </a>
-    </td></tr>
-<tr>
-    <td align="center">
-        <a href="https://github.com/Jam-Iko">
-            <img src="https://avatars.githubusercontent.com/u/44161368?v=4" width="100;" alt="Jam-Iko"/>
-            <br />
-            <sub><b>Jam-Iko</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/mattusik">
-            <img src="https://avatars.githubusercontent.com/u/1252223?v=4" width="100;" alt="mattusik"/>
-            <br />
-            <sub><b>Matus Rohal</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/rakibabu">
-            <img src="https://avatars.githubusercontent.com/u/14089150?v=4" width="100;" alt="rakibabu"/>
-            <br />
-            <sub><b>Rakhal Imming</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/tiotobing">
-            <img src="https://avatars.githubusercontent.com/u/33707075?v=4" width="100;" alt="tiotobing"/>
-            <br />
-            <sub><b>Tiotobing</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/Sartoric">
-            <img src="https://avatars.githubusercontent.com/u/6607379?v=4" width="100;" alt="Sartoric"/>
-            <br />
-            <sub><b>Sartoric</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/macbookandrew">
-            <img src="https://avatars.githubusercontent.com/u/784333?v=4" width="100;" alt="macbookandrew"/>
-            <br />
-            <sub><b>Andrew Minion</b></sub>
-        </a>
-    </td></tr>
-<tr>
-    <td align="center">
-        <a href="https://github.com/dtwebuk">
-            <img src="https://avatars.githubusercontent.com/u/6045378?v=4" width="100;" alt="dtwebuk"/>
-            <br />
-            <sub><b>Daniel Tomlinson</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/tkaw220">
-            <img src="https://avatars.githubusercontent.com/u/694289?v=4" width="100;" alt="tkaw220"/>
-            <br />
-            <sub><b>Edwin Aw</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/manojo123">
-            <img src="https://avatars.githubusercontent.com/u/20805943?v=4" width="100;" alt="manojo123"/>
-            <br />
-            <sub><b>Jorge Moura</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/jorgejavierleon">
-            <img src="https://avatars.githubusercontent.com/u/7950376?v=4" width="100;" alt="jorgejavierleon"/>
-            <br />
-            <sub><b>Jorge Javier León</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/geisi">
-            <img src="https://avatars.githubusercontent.com/u/10728579?v=4" width="100;" alt="geisi"/>
-            <br />
-            <sub><b>Tim Geisendörfer</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/adamgoose">
-            <img src="https://avatars.githubusercontent.com/u/611068?v=4" width="100;" alt="adamgoose"/>
-            <br />
-            <sub><b>Adam Engebretson</b></sub>
-        </a>
-    </td></tr>
-<tr>
-    <td align="center">
-        <a href="https://github.com/andcl">
-            <img src="https://avatars.githubusercontent.com/u/8470427?v=4" width="100;" alt="andcl"/>
-            <br />
-            <sub><b>Andrés</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/ganyicz">
-            <img src="https://avatars.githubusercontent.com/u/3823354?v=4" width="100;" alt="ganyicz"/>
-            <br />
-            <sub><b>Filip Ganyicz</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/guysolamour">
-            <img src="https://avatars.githubusercontent.com/u/22590722?v=4" width="100;" alt="guysolamour"/>
-            <br />
-            <sub><b>Guy-roland ASSALE</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/jackmcdade">
-            <img src="https://avatars.githubusercontent.com/u/44739?v=4" width="100;" alt="jackmcdade"/>
-            <br />
-            <sub><b>Jack McDade</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/jeremyvaught">
-            <img src="https://avatars.githubusercontent.com/u/302304?v=4" width="100;" alt="jeremyvaught"/>
-            <br />
-            <sub><b>Jeremy Vaught</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/jmarkese">
-            <img src="https://avatars.githubusercontent.com/u/1827586?v=4" width="100;" alt="jmarkese"/>
-            <br />
-            <sub><b>John Markese</b></sub>
-        </a>
-    </td></tr>
-<tr>
-    <td align="center">
-        <a href="https://github.com/nexxai">
-            <img src="https://avatars.githubusercontent.com/u/4316564?v=4" width="100;" alt="nexxai"/>
-            <br />
-            <sub><b>JT Smith</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/mrabbani">
-            <img src="https://avatars.githubusercontent.com/u/4253979?v=4" width="100;" alt="mrabbani"/>
-            <br />
-            <sub><b>Mahbub Rabbani</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/mauriciv">
-            <img src="https://avatars.githubusercontent.com/u/12043163?v=4" width="100;" alt="mauriciv"/>
-            <br />
-            <sub><b>Mauricio Vera</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/xpundel">
-            <img src="https://avatars.githubusercontent.com/u/1384653?v=4" width="100;" alt="xpundel"/>
-            <br />
-            <sub><b>Mikhail Lisnyak</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/absemetov">
-            <img src="https://avatars.githubusercontent.com/u/735924?v=4" width="100;" alt="absemetov"/>
-            <br />
-            <sub><b>Nadir Absemetov</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/nielsiano">
-            <img src="https://avatars.githubusercontent.com/u/947684?v=4" width="100;" alt="nielsiano"/>
-            <br />
-            <sub><b>Niels Stampe</b></sub>
-        </a>
-    </td></tr>
-<tr>
-    <td align="center">
-        <a href="https://github.com/4ilo">
-            <img src="https://avatars.githubusercontent.com/u/15938739?v=4" width="100;" alt="4ilo"/>
-            <br />
-            <sub><b>Olivier</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/PazkaL">
-            <img src="https://avatars.githubusercontent.com/u/1322192?v=4" width="100;" alt="PazkaL"/>
-            <br />
-            <sub><b>Pascal Kousbroek</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/quintenbuis">
-            <img src="https://avatars.githubusercontent.com/u/36452184?v=4" width="100;" alt="quintenbuis"/>
-            <br />
-            <sub><b>Quinten Buis</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/publiux">
-            <img src="https://avatars.githubusercontent.com/u/2847188?v=4" width="100;" alt="publiux"/>
-            <br />
-            <sub><b>Raul Ruiz</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/royduin">
-            <img src="https://avatars.githubusercontent.com/u/1703233?v=4" width="100;" alt="royduin"/>
-            <br />
-            <sub><b>Roy Duineveld</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/CaddyDz">
-            <img src="https://avatars.githubusercontent.com/u/13698160?v=4" width="100;" alt="CaddyDz"/>
-            <br />
-            <sub><b>Salim Djerbouh</b></sub>
-        </a>
-    </td></tr>
-<tr>
-    <td align="center">
-        <a href="https://github.com/pendalff">
-            <img src="https://avatars.githubusercontent.com/u/236587?v=4" width="100;" alt="pendalff"/>
-            <br />
-            <sub><b>Fukalov Sem</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/sobhanatar">
-            <img src="https://avatars.githubusercontent.com/u/1507325?v=4" width="100;" alt="sobhanatar"/>
-            <br />
-            <sub><b>Sobhan Atar</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/mightyteja">
-            <img src="https://avatars.githubusercontent.com/u/2662727?v=4" width="100;" alt="mightyteja"/>
-            <br />
-            <sub><b>Teja Babu S</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/kekenec">
-            <img src="https://avatars.githubusercontent.com/u/11806874?v=4" width="100;" alt="kekenec"/>
-            <br />
-            <sub><b>Kekenec</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/sasin91">
-            <img src="https://avatars.githubusercontent.com/u/808722?v=4" width="100;" alt="sasin91"/>
-            <br />
-            <sub><b>Sasin91</b></sub>
-        </a>
-    </td></tr>
-</table>
-<!-- readme: contributors -end -->

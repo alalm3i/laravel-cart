@@ -1,9 +1,9 @@
 <?php
 
-namespace Gloudemans\Shoppingcart\Calculation;
+namespace Alalm3i\LaravelCart\Calculation;
 
-use Gloudemans\Shoppingcart\CartItem;
-use Gloudemans\Shoppingcart\Contracts\Calculator;
+use Alalm3i\LaravelCart\CartItem;
+use Alalm3i\LaravelCart\Contracts\Calculator;
 
 class DefaultCalculator implements Calculator
 {

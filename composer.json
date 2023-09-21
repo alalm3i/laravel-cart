@@ -1,18 +1,13 @@
 {
-    "name": "bumbummen99/shoppingcart",
-    "description": "Laravel Shoppingcart",
+    "name": "alalm3i/laravel-cart",
+    "description": "Laravel Shopping cart",
     "keywords": ["laravel", "shoppingcart"],
     "license": "MIT",
     "authors": [
         {
-            "name": "Rob Gloudemans",
-            "email": "info@robgloudemans.nl",
-            "homepage": "http://robgloudemans.nl/"
-        },
-        {
-            "name": "Patrick Henninger",
-            "email": "privat@skyraptor.eu",
-            "homepage": "https://skyraptor.eu/"
+            "name": "Nabeel Alalmai",
+            "email": "nabeelalalmai@gmail.com",
+            "homepage": "https://nabeel.it/"
         }
     ],
     "require": {
@@ -29,25 +24,24 @@
     },
     "autoload": {
         "psr-4": {
-            "Gloudemans\\Shoppingcart\\": "src/"
+            "Alalm3i\\LaravelCart\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Gloudemans\\Tests\\Shoppingcart\\": "tests/"
+            "Alalm3i\\LaravelCart\\Tests\\": "tests/"
         }
     },
-    "suggest": {
-        "gloudemans/notify": "Simple flash notifications for Laravel"
-    },
-    "minimum-stability": "stable",
+
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "extra": {
         "laravel": {
             "providers": [
-                "Gloudemans\\Shoppingcart\\ShoppingcartServiceProvider"
+                "Alalm3i\\LaravelCart\\CartServiceProvider"
             ],
             "aliases": {
-                "Cart": "Gloudemans\\Shoppingcart\\Facades\\Cart"
+                "Cart": "Alalm3i\\LaravelCart\\Facades\\Cart"
             }
         }
     },
